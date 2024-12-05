@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farda Universitária Personalizada</title>
+    <link rel="stylesheet" href="TelaFarda.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Farda Universitária Personalizada</h1>
+        <ul class="nav nav-tabs" id="customizationTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="curso-tab" data-bs-toggle="tab" data-bs-target="#curso-pane" type="button" role="tab">Curso</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="cor-tab" data-bs-toggle="tab" data-bs-target="#cor-pane" type="button" role="tab">Cor</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="simbolo-tab" data-bs-toggle="tab" data-bs-target="#simbolo-pane" type="button" role="tab">Símbolos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="usuario-tab" data-bs-toggle="tab" data-bs-target="#usuario-pane" type="button" role="tab">Usuário</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="customizationTabsContent">
+            <div class="tab-pane fade show active" id="curso-pane" role="tabpanel">
+                <div class="form-group mt-3">
+                    <label for="curso">Selecione o curso:</label>
+                    <select id="curso" name="curso" class="form-control">
+                        <option value="Ciência da Computação">Ciência da Computação</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Nutrição">Nutrição</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="cor-pane" role="tabpanel">
+                <div class="form-group mt-3">
+                    <label for="cor">Selecione a cor:</label>
+                    <select id="cor" name="cor" class="form-control">
+                        <option value="Azul">Azul</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Bege Claro">Bege Claro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="simbolo-pane" role="tabpanel">
+                <div class="form-group mt-3">
+                    <label for="simbolo-universidade">Símbolo da Universidade:</label>
+                    <input type="file" id="simbolo-universidade" name="simbolo-universidade" class="form-control" accept="image/*">
+                    <div id="preview-simbolo-universidade" class="mt-3"></div>
+                </div> 
+                <div class="form-group mt-3">
+                    <label for="simbolo-Curso">Símbolo do curso:</label>
+                    <input type="file" id="simbolo-Curso" name="simbolo-Curso" class="form-control" accept="image/*">
+                    <div id="preview-simbolo-Curso" class="mt-3"></div>
+                </div> 
+            </div>
+            <div class="tab-pane fade" id="usuario-pane" role="tabpanel">
+                <div class="form-group mt-3">
+                    <label for="nome-usuario">Nome do Usuário:</label>
+                    <input type="text" id="nome-usuario" name="nome-usuario" class="form-control" placeholder="Seu Nome">
+                </div>
+            </div>
+        </div>
+        <button id="btn-criar-farda" class="btn btn-primary mt-4">Criar Farda</button>
+        <div id="farda-resultado" class="mt-4"></div>    
+        <div class="container mt-5">
+            <h2>Visualização da Farda</h2>
+            <div id="farda-preview" style="border: 2px solid #ccc; padding: 20px; border-radius: 8px; text-align: center; background-color: #f9f9f9;">
+                <img id="preview-imagem" src="" alt="Visualização da Farda" style="max-width: 100%; height: auto;">
+                <p id="preview-descricao" style="margin-top: 10px; font-weight: bold;">Personalize sua farda para ver aqui!</p>
+            </div>
+        </div>
+           
+    </div>
+    
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 p-3 bg-dark text-light">
+        <p>&copy; 2024 Farda Universitária. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para exibir as informações escolhidas
+        const resultado = document.getElementById('farda-resultado');
+        const btnCriarFarda = document.getElementById('btn-criar-farda');
+    
+        btnCriarFarda.addEventListener('click', () => {
+            const curso = document.getElementById('curso').value;
+            const cor = document.getElementById('cor').value;
+            const simboloUniversidade = document.getElementById('simbolo-universidade').value || "Não enviado";
+            const simboloCurso = document.getElementById('simbolo-Curso').value || "Não informado";
+            const nomeUsuario = document.getElementById('nome-usuario').value || "Não informado";
+    
+            resultado.innerHTML = `
+                <h2>Farda Personalizada:</h2>
+                <p><strong>Curso:</strong> ${curso}</p>
+                <p><strong>Cor:</strong> ${cor}</p>
+                <p><strong>Símbolo da Universidade:</strong> ${simboloUniversidade}</p>
+                <p><strong>Símbolo do Curso:</strong> ${simboloCurso}</p>
+                <p><strong>Nome do Usuário:</strong> ${nomeUsuario}</p>
+            `;
+        });
+    </script>
+    <script>
+    const inputSimboloUniversidade = document.getElementById('simbolo-universidade');
+    const previewSimboloUniversidade = document.getElementById('preview-simbolo-universidade');
+
+    inputSimboloUniversidade.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                previewSimboloUniversidade.innerHTML = `<img src="${e.target.result}" alt="Pré-visualização" style="max-width: 100%; height: auto; border: 1px solid #ccc; padding: 5px; border-radius: 5px;">`;
+            };
+            
+            reader.readAsDataURL(file);
+        } else {
+            previewSimboloUniversidade.innerHTML = `<p style="color: red;">Por favor, selecione um arquivo de imagem válido.</p>`;
+        }
+    });
+</script>
+<script>
+    const inputSimboloCurso = document.getElementById('simbolo-Curso');
+    const previewSimboloCurso = document.getElementById('preview-simbolo-Curso');
+
+    inputSimboloCurso.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                previewSimboloCurso.innerHTML = `<img src="${e.target.result}" alt="Pré-visualização" style="max-width: 100%; height: auto; border: 1px solid #ccc; padding: 5px; border-radius: 5px;">`;
+            };
+            
+            reader.readAsDataURL(file);
+        } else {
+            previewSimboloCurso.innerHTML = `<p style="color: red;">Por favor, selecione um arquivo de imagem válido.</p>`;
+        }
+    });
+</script>
+<script>
+    // Elementos de visualização
+    const previewImagem = document.getElementById('preview-imagem');
+    const previewDescricao = document.getElementById('preview-descricao');
+
+    // Mapas de opções para imagens (use URLs ou caminhos reais)
+    const imagensCores = {
+        Azul: "caminho/para/farda-azul.jpg",
+        Preto: "caminho/para/farda-preto.jpg",
+        "Bege Claro": "caminho/para/farda-bege.jpg",
+    };
+
+    const imagensCursos = {
+        "Ciência da Computação": "caminho/para/computacao.png",
+        Medicina: "caminho/para/medicina.png",
+        Nutrição: "caminho/para/nutricao.png",
+    };
+
+    // Atualiza a visualização com base nas seleções
+    function atualizarIlustracao() {
+        const corSelecionada = document.getElementById('cor').value;
+        const cursoSelecionado = document.getElementById('curso').value;
+
+        const imagemCor = imagensCores[corSelecionada];
+        const imagemCurso = imagensCursos[cursoSelecionado];
+
+        // Atualiza a imagem principal
+        if (imagemCor && imagemCurso) {
+            previewImagem.src = imagemCor; // Exemplo básico, pode compor camadas de imagens se necessário
+            previewDescricao.innerHTML = `Farda para <strong>${cursoSelecionado}</strong> na cor <strong>${corSelecionada}</strong>.`;
+        } else {
+            previewImagem.src = "";
+            previewDescricao.innerHTML = "Personalize sua farda para ver aqui!";
+        }
+    }
+
+    // Adiciona eventos nos campos
+    document.getElementById('curso').addEventListener('change', atualizarIlustracao);
+    document.getElementById('cor').addEventListener('change', atualizarIlustracao);
+</script>
+
+
+
+</body>
+</html>

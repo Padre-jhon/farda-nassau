@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Cliente</title>
+    <link rel="stylesheet" href="LoginCliente.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>Cadastro de Cliente</h1>
+            <p>Complete o formulário abaixo para criar sua conta.</p>
+        </div>
+        <form class="form" id="cadastroForm">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+" title="O nome deve conter apenas letras.">
+            
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+            
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres" required minlength="8" title="A senha deve ter no mínimo 8 caracteres.">
+            
+            <label for="telefone">Telefone</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXXXX-XXXX" required pattern="\(\d{2}\)\s\d{7}-\d{4}" title="O telefone deve estar no formato (XX) XXXXX-XXXX.">
+            
+            <label for="endereco">Endereço</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Ex.: Rua Nome da Rua, 123" required pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s]+,\s\d{1,5}" title="O endereço deve estar no formato: Nome da Rua, número. Ex.: Rua Exemplo, 123">
+            
+            <button type="submit">Cadastrar</button>
+        </form>        
+    </div>
+
+    <script>
+        // Valida o formulário e redireciona após o envio
+        const form = document.getElementById('cadastroForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o comportamento padrão de envio
+
+            if (form.checkValidity()) {
+                alert("Cadastro realizado com sucesso!");
+                window.location.href = "TelaFarda.html"; // Redireciona para a próxima página
+            } else {
+                alert("Por favor, preencha todos os campos corretamente.");
+            }
+        });
+
+        form.addEventListener('submit', function(event) {
+    const endereco = document.getElementById('endereco').value;
+    const enderecoRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+,\s\d{1,5}$/;
+    
+    if (!enderecoRegex.test(endereco)) {
+        alert("Por favor, insira o endereço no formato correto: Nome da Rua, número.");
+        event.preventDefault(); // Impede o envio se inválido
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden; /* Impede barras de rolagem */
+    background-color: #afa8a8;
+}
+
+/* Estilo para as imagens laterais */
+.side-image {
+    position: absolute;
+    top: 0;
+    width: 20%; /* Ajuste o tamanho conforme necessário */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    filter: blur(2px); /* Aplica o efeito de desfoque */
+    transition: filter 0.3s ease; /* Transição suave */
+}
+
+.side-image:hover {
+    filter: blur(0); /* Remove o desfoque ao passar o mouse */
+}
+
+.left {
+    left: 0;
+    background-image: url('1fca674f-4c73-415e-9e59-3137aebf179a.webp'); /* Substitua pelo caminho da sua imagem */
+}
+
+.right {
+    right: 0;
+    background-image: url('1fca674f-4c73-415e-9e59-3137aebf179a.webp'); /* Substitua pelo caminho da sua imagem */
+}
+
+/* Imagem de fundo no centro */
+.center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* Ajuste a largura conforme necessário */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0; /* Garante que fique atrás do conteúdo */
+    filter: blur(3px); /* Desfoque inicial */
+    transition: filter 0.3s ease;
+}
+
+.center-image:hover {
+    filter: blur(0); /* Remove o desfoque ao passar o mouse */
+}
+
+/* Estilo para o conteúdo central */
+.content {
+    position: relative;
+    z-index: 2; /* Garante que o conteúdo fique acima das imagens */
+    text-align: center;
+    padding: 20px;
+    background: rgba(81, 79, 79, 0.8); /* Fundo branco semitransparente */
+    border-style: double;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #000000;
+}
+
+.options {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #28a745;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+/* Estilo para o título da página */
+.page-title {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 36px;
+    color: #1b5e80; /* Cor do título */
+    z-index: 3; /* Garante que o título fique acima das imagens */
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra suave para melhorar a visibilidade */
+}
